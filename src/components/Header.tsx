@@ -1,9 +1,11 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { logOut } from '../store/userSlice'
+import { useDispatch } from 'react-redux'
 
 const navigation = [
-  { name: 'Home', href: '', current: true },
+  { name: 'Home', href: '/home', current: true },
   { name: 'All Products', href: '/allproducts', current: false }
 ]
 
@@ -12,6 +14,8 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -77,7 +81,7 @@ export default function Header() {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                  <a onClick={()=>navigate('/profile')} className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Your Profile
                   </a>
                 </MenuItem>
@@ -87,7 +91,10 @@ export default function Header() {
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                  <a onClick={()=>{
+                    dispatch(logOut())
+                    navigate('/login')
+                    }} className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Sign out
                   </a>
                 </MenuItem>

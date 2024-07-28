@@ -1,3 +1,95 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.products-container{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    justify-content: space-evenly;
+    column-gap: 20px;
+}
+
+.product-card{
+    width: 200px;
+    height: 291px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    background-color: navajowhite;
+    color: black;
+    display: grid;
+    height: auto;
+}
+
+.login-container{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+
+.login-box{
+    width: 300px;
+    height: 202px;
+    background-color: tan;
+    padding: 50px;
+    box-sizing: content-box;
+    border-radius: 22px;
+}
+
+.cat-Container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    row-gap: 20px;
+    column-gap: 29px;
+    margin-top: 20px;
+}
+
+.cat-Box{
+    background-color: chocolate;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    border: 1px solid orange;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+.rating{
+    background-color: green;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    text-align: center;
+    border-radius: 5px;
+    padding: 3px;
+    color:white;
+    margin: auto;
+}
+
+.rating1{
+    background-color: green;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    text-align: center;
+    border-radius: 5px;
+    padding: 3px;
+    color:white;
+}
+
+.dataContainer{
+    font-size: 20px;
+    text-align: left;
+}

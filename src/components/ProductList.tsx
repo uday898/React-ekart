@@ -1,21 +1,22 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { getProducts } from "../store/productsListSlice";
+import { useParams } from 'react-router-dom';
+import '../index.css'
+import useGetProducts from './hooks/useGetProducts';
+import Loader from "./Loader";
+import { ProductCard } from './ProductCard';
 
-const ProductList = () => {
-  const {products,isLoading,status} = useSelector(store=>store.allproducts);
-  const dispatch = useDispatch();
+const ProductList = ({isCategory}) => {
+ const {categoryId} = useParams();
+ const {products,isLoading} = useGetProducts({isCategory,categoryId})
 
-  useEffect(()=>{
-    dispatch(getProducts())
-  },[])
+  if(isLoading){
+    return <Loader/>
+  }
 
   return (
     <>
-    {/* <p>Products</p> */}
-    <ul>
-        {products.length && products.map((item)=><li key={item.id}>{item.title}</li>)}
-    </ul>
+    <div className="products-container">
+        {products && products.map((item)=> <ProductCard product={item}/>)}
+    </div>
     
     </>
   )

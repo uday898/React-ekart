@@ -1,19 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
+import axiosInstance from "../service/axiosInstance"
 
 const initialState = {
-    products : [],
-    isLoading: true,
+    allProducts : [],
+    categoryproducts:[],
+    isLoading: false,
     status: 'idle'
 }
 
-const axiosInstance = axios.create({
-    baseURL:'https://dummyjson.com/',
-})
-
-export const getProducts = createAsyncThunk('product/getProducts',async (_,thunkApi)=>{
+export const getAllProducts = createAsyncThunk('product/getAllProducts',async (_,thunkApi)=>{
     try{
         const res = await axiosInstance.get('products')
+        return res.data;
+    }catch(e){
+        console.error(e);
+    }
+})
+
+export const getCategoryProducts = createAsyncThunk('product/getCategoryProducts',async (categoryId,thunkApi)=>{
+    try{
+        const res = await axiosInstance.get(`https://dummyjson.com/products/category/${categoryId}`)
         return res.data;
     }catch(e){
         console.error(e);
@@ -27,12 +33,19 @@ const productsList = createSlice({
 
     },
     extraReducers:(builder)=>{
-        builder.addCase(getProducts.pending,(state,action)=>{
+        builder.addCase(getAllProducts.pending,(state,action)=>{
             state.isLoading = true;
         })
-        builder.addCase(getProducts.fulfilled,(state,action)=>{
+        .addCase(getAllProducts.fulfilled,(state,action)=>{
             state.isLoading = false;
-            state.products = action.payload.products
+            state.allProducts = action.payload.products
+        })
+        .addCase(getCategoryProducts.pending,(state,action)=>{
+            state.isLoading = true;
+        })
+        .addCase(getCategoryProducts.fulfilled,(state,action)=>{
+            state.isLoading = false;
+            state.categoryproducts = action.payload.products
         })
     }
 });
