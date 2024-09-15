@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 import { getCategoryList } from "../store/category";
 import Loader from "./Loader";
 import '../index.css'
@@ -31,6 +31,9 @@ const dispatch = useDispatch()
 
   return (
     <>
+        <Link to='wallet'>Go to Wallet</Link>
+       {/*  <Outlet /> */}
+
         <div className="cat-Container">
           {
             categories.map((item)=>{

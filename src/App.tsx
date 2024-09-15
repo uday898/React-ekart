@@ -11,13 +11,16 @@ import Login from './components/Login'
 import Root from './components/Root'
 import ProtectedRoute from './components/ProtectedRoute'
 import ProfileScreen from './components/ProfileScreen'
+import Wallet from './components/Wallet'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='' element={<Root />}  errorElement={<ErrorBoundary />}>
       <Route path='' element={<ProtectedRoute><Layout /></ProtectedRoute>} >
-        <Route path='/home' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-        <Route path='/category/:categoryId' element={<ProtectedRoute><ProductList isCategory={true} /></ProtectedRoute>}/>
+        <Route path='/home' element={<ProtectedRoute><Home/></ProtectedRoute>}>
+          <Route path='wallet' Component={Wallet}></Route>
+          <Route path='category/:categoryId' element={<ProtectedRoute><ProductList isCategory={true} /></ProtectedRoute>}/>
+        </Route>
         <Route path='/allproducts' element={<ProtectedRoute><ProductList isCategory={false}/></ProtectedRoute>}/>
         <Route path='/product/:productId' element={<ProtectedRoute><ProductDetail/></ProtectedRoute>}/>
         <Route path='/profile' element={<ProtectedRoute><ProfileScreen/></ProtectedRoute>}/>
@@ -26,6 +29,15 @@ const router = createBrowserRouter(
     </Route>
   )
 )
+
+/* const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='' element={}>
+
+    </Route>
+  )
+) */
+
 
 function App() {
 

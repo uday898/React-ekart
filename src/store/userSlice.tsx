@@ -53,7 +53,7 @@ const userSlice = createSlice({
             state.userToken = payload.token;
             state.status = 'loggedIn'
         })
-        .addCase(login.rejected, (state,action) => {
+        .addCase(login.rejected, (state) => {
             state.isLoading = false;
             state.isAuthenticated = false;
             

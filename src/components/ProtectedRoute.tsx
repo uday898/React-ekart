@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import Loader from "./Loader";
+import { Outlet } from "react-router-dom";
 
 export const ProtectedRoute = ({children}) => {
 const {isAuthenticated,isLoading} = useSelector(state=>state.user);

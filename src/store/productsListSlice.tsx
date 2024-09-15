@@ -47,6 +47,7 @@ const productsList = createSlice({
             state.isLoading = false;
             state.categoryproducts = action.payload.products
         })
+       
     }
 });
 

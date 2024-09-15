@@ -2,7 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productApi = createApi({
     reducerPath:'productApi',
-    baseQuery: fetchBaseQuery({baseUrl:'https://dummyjson.com/',
+    baseQuery: fetchBaseQuery(
+        {
+            baseUrl:'https://dummyjson.com/',
         prepareHeaders:(headers,{getState})=>{
             let token = getState().user.userToken
             if(token){

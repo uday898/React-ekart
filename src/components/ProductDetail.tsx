@@ -23,7 +23,7 @@ if(error){
       </div>
       <div className="dataContainer" style={{"fontSize":"20px"}}>
           <div>{data.title}</div>
-          <div className="rating1">{data.rating}</div>
+          <div className="rating1">{data.rating}★</div>
           <div style={{"fontSize":'40px',"color":"blue"}}>${data.price}</div>
           <div>{data.description}</div>
           
